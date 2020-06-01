@@ -5,6 +5,7 @@ import './index.sass';
 
 import Header from './components/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
+import Main from './containers/Main/main'
 
 class App extends Component {
 
@@ -21,7 +22,11 @@ class App extends Component {
             <div className="content-wrapper">
               <Route exact path="/login" />
               <Route exact path="/logout"  />
-              <Route exact path="/" />
+              <Route exact path="/"
+                render={
+                  ()=><Main title="Фильмы" />
+                }
+              />
               <Route exact path="/popular" />
               <Route exact path="/top-rated" />
               <Route exact path="/coming-soon" />
