@@ -3,20 +3,16 @@ import MovieItem from '../../components/MovieItem/movieItem';
 
 import './movieList.sass'
 
-const List = (props) => {
+const List = ({list, addFavorite}) => {
 
-  const movieItems = props.list.map(movie => {
+  const movieItems = list.map(movie => {
     return <MovieItem
               key={movie.id}
               id={movie.id}
               voteAverage={movie.vote_average}
               posterPath={movie.poster_path}
               title={movie.title}
-              authenticated={props.authenticated}
-              onFavoriteSelect={(selectedMovie, userList) => props.addToList(selectedMovie, userList)}
-              onFavoriteDeselect={(selectedMovie, userList) => props.removeFromList(selectedMovie, userList)}
-              favorites={props.favorites}
-              watchLater={props.watchLater} />
+              addFavorite={addFavorite} />
   });
 
   return (

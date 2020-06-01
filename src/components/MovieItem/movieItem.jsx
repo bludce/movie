@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './movieItem.sass'
 
-const MovieItem = ({id, voteAverage, posterPath, title}) => (
+const MovieItem = ({id, voteAverage, posterPath, title, addFavorite}) => (
   <div key={id} className="list-container__movie movie">
     <span className="movie__vote-average">{voteAverage}</span>
 
     <div className="movie__image">
       <div className="movie-actions">
-        <svg className="movie-action movie-action__favorite" viewBox="0 0 13 12" xmlns="http://www.w3.org/2000/svg"><path d="M12.903 3.583C12.713 1.507 11.245 0 9.405 0 8.18 0 7.058.66 6.427 1.717 5.8.647 4.725 0 3.52 0 1.68 0 .21 1.507.02 3.583c-.015.092-.076.574.11 1.362.267 1.135.886 2.168 1.79 2.986l4.502 4.087 4.58-4.086c.902-.817 1.52-1.85 1.79-2.985.185-.787.124-1.27.11-1.362z"/></svg>
+        <svg onClick={() => addFavorite(id)} className="movie-action movie-action__favorite" viewBox="0 0 13 12" xmlns="http://www.w3.org/2000/svg"><path d="M12.903 3.583C12.713 1.507 11.245 0 9.405 0 8.18 0 7.058.66 6.427 1.717 5.8.647 4.725 0 3.52 0 1.68 0 .21 1.507.02 3.583c-.015.092-.076.574.11 1.362.267 1.135.886 2.168 1.79 2.986l4.502 4.087 4.58-4.086c.902-.817 1.52-1.85 1.79-2.985.185-.787.124-1.27.11-1.362z"/></svg>
 
         <svg width="10" height="15" className="movie-action movie-action__playtrailer" viewBox="0 0 10 15" xmlns="http://www.w3.org/2000/svg"><path d="M.013.135L9.7 7.5.012 14.865" /></svg>
 

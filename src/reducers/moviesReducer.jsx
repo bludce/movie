@@ -1,6 +1,6 @@
-export function itemsHasErrored(state = false, action) {
+export function MoviesHasErrored(state = false, action) {
   switch (action.type) {
-      case 'ITEMS_HAS_ERRORED':
+      case 'MOVIES_HAS_ERRORED':
           return action.hasErrored;
 
       default:
@@ -8,9 +8,9 @@ export function itemsHasErrored(state = false, action) {
   }
 }
 
-export function itemsIsLoading(state = false, action) {
+export function MoviesIsLoading(state = false, action) {
   switch (action.type) {
-      case 'ITEMS_IS_LOADING':
+      case 'MOVIES_IS_LOADING':
           return action.isLoading;
 
       default:
@@ -18,12 +18,22 @@ export function itemsIsLoading(state = false, action) {
   }
 }
 
-export function items(state = [], action) {
+export function movies(state = [], action) {
   switch (action.type) {
-      case 'ITEMS_FETCH_DATA_SUCCESS':
-          return action.items;
+      case 'MOVIES_FETCH_DATA_SUCCESS':
+          return action.movies;
 
       default:
           return state;
+  }
+}
+
+export const favorites = (state = [], {type, id}) => {
+  switch (type) {
+    case 'ADD_FAVORITES': 
+      return [...state, {id}]
+      break;
+    default:
+      return state;
   }
 }
