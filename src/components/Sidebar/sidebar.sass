@@ -5,6 +5,10 @@
   font-size: 14px
   &__item
     position: relative
+    &:hover a
+      color: #f10c63
+    &:hover svg
+      fill: #f10c63
     & a
       color: #fff
       text-decoration: none
@@ -15,8 +19,14 @@
         display: inline-block
         margin-right: 15px
         vertical-align: -2px
+        width: 16px
         fill: #fff
       &.is-active      
         color: #f10c63
       &.is-active svg
         fill: #f10c63
+    &--coming-soon 
+      margin: 10px 0
+      font-style: italic
+      & a
+        color: rgba(255, 255, 255, 0.5)
