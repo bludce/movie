@@ -3,7 +3,7 @@ import MovieItem from '../../components/MovieItem/movieItem';
 
 import './movieList.sass'
 
-const List = ({list, addFavorite}) => {
+const List = ({list, addFavorite, addWatchLater}) => {
 
   const movieItems = list.map(movie => {
     return <MovieItem
@@ -12,7 +12,8 @@ const List = ({list, addFavorite}) => {
               voteAverage={movie.vote_average}
               posterPath={movie.poster_path}
               title={movie.title}
-              addFavorite={addFavorite} />
+              addFavorite={addFavorite}
+              addWatchLater={addWatchLater} />
   });
 
   return (

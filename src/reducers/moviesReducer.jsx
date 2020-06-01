@@ -37,3 +37,13 @@ export const favorites = (state = [], {type, id}) => {
       return state;
   }
 }
+
+export const watchLater = (state = [], {type, id}) => {
+  switch (type) {
+    case 'ADD_WATCH_LATER': 
+      return [...state, {id}]
+      break;
+    default:
+      return state;
+  }
+}

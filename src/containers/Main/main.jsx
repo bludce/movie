@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API_KEY, PATH_BASE, PATH_MOVIE, DEFAULT_PAGE, PATH_PAGE, PATH_POPULAR } from '../../api';
 import List from '../../components/MovieList/movieList';
 import { connect } from 'react-redux';
-import { itemsFetchData, addFavorite } from '../../actions/moviesAction';
+import { itemsFetchData, addFavorite, addWatchLater } from '../../actions/moviesAction';
 
 import './main.sass'
 
@@ -18,7 +18,7 @@ class Main extends Component {
 
   render () {
 
-    const { movies , addFavorite} = this.props;
+    const { movies , addFavorite, addWatchLater} = this.props;
     const { results, page } = movies;
 
     return (
@@ -28,6 +28,7 @@ class Main extends Component {
           <List
             list={results}
             addFavorite={addFavorite}
+            addWatchLater={addWatchLater}
          />
         }
 
@@ -43,7 +44,8 @@ const mapStateToProps = (state) => {
     movies: state.movies,
     hasErrored: state.MoviesHasErrored,
     isLoading: state.MoviesIsLoading,
-    favorites: state.favorites
+    favorites: state.favorites,
+    watchLater: state.watchLater
   };
 };
 
@@ -51,6 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (url) => dispatch(itemsFetchData(url)),
     addFavorite: (id) => dispatch(addFavorite(id)),
+    addWatchLater: (id) => dispatch(addWatchLater(id)),
   };
 };
 

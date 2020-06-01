@@ -49,3 +49,14 @@ export const addFavorite = (id) => {
     dispatch(favorites(id))
   };
 }
+
+export const watchLater = (id) => ({
+  type: 'ADD_WATCH_LATER',
+  id
+});
+
+export const addWatchLater = (id) => {
+  return (dispatch) => {
+    dispatch(watchLater(id))
+  };
+}
