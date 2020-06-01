@@ -4,31 +4,31 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './index.sass';
 
 import Header from './components/Header/header'
+import Sidebar from './components/Sidebar/sidebar'
 
 class App extends Component {
 
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="app">
           <Header />
-          <div className="App-main">
-            <div className="App-sidebar-wrapper">
-              {/* sidebar */}
+          <div className="main-wrapper">
+            <div className="sidebar-wrapper">
+              <Sidebar />
               {/* footer */}
             </div>
-              <div className="App-content-wrapper">
-                <Route exact path="/login"  />
-                <Route exact path="/logout"  />
-                <Route exact path="/" />
-                <Route exact path="/popular" />
-                <Route exact path="/top-rated" />
-                <Route exact path="/coming-soon" />
-                <Route path="/search" />
-                <Route exact path="/favorites" />
-
-                <Route exact path="/watch-later" />
-              </div>
+            <div className="content-wrapper">
+              <Route exact path="/login" />
+              <Route exact path="/logout"  />
+              <Route exact path="/" />
+              <Route exact path="/popular" />
+              <Route exact path="/top-rated" />
+              <Route exact path="/coming-soon" />
+              <Route path="/search" />
+              <Route exact path="/favorites" />
+              <Route exact path="/watch-later" />
+            </div>
           </div>
         </div>
       </BrowserRouter>

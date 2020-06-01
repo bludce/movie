@@ -1,0 +1,22 @@
+.sidebar-menu
+  list-style-type: none
+  margin: 0
+  padding: 25px 0
+  font-size: 14px
+  &__item
+    position: relative
+    & a
+      color: #fff
+      text-decoration: none
+      padding: 10px 25px
+      display: block
+      transition: all .3s ease
+      & svg
+        display: inline-block
+        margin-right: 15px
+        vertical-align: -2px
+        fill: #fff
+      &.is-active      
+        color: #f10c63
+      &.is-active svg
+        fill: #f10c63
