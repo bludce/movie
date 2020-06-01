@@ -3,13 +3,15 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './index.sass';
 
+import Header from './components/Header/header'
+
 class App extends Component {
 
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <header></header>
+          <Header />
           <div className="App-main">
             <div className="App-sidebar-wrapper">
               {/* sidebar */}

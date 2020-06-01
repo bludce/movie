@@ -20,13 +20,10 @@ module.exports = (argv) => ({
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
+            loader: 'file-loader',
           },
         ],
       },
