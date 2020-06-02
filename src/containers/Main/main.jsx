@@ -52,8 +52,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (url) => dispatch(itemsFetchData(url)),
-    addFavorite: (id) => dispatch(addFavorite(id)),
-    addWatchLater: (id) => dispatch(addWatchLater(id)),
+    addFavorite: (id, vote_average, poster_path, title) => dispatch(addFavorite(id, vote_average, poster_path, title)),
+    addWatchLater: (id, vote_average, poster_path, title) => dispatch(addWatchLater(id, vote_average, poster_path, title)),
   };
 };
 

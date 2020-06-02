@@ -39,13 +39,13 @@ export function MoviesFetchDataSuccess(movies) {
   };
 }
 
-export const addFavorite = (id) => ({
+export const addFavorite = (id, vote_average, poster_path, title) => ({
   type: 'ADD_FAVORITES',
-  id
+  id, vote_average, poster_path, title
 });
 
 
-export const addWatchLater = (id) => ({
+export const addWatchLater = (id, vote_average, poster_path, title) => ({
   type: 'ADD_WATCH_LATER',
-  id
+  id, vote_average, poster_path, title
 });

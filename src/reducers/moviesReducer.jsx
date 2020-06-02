@@ -28,20 +28,20 @@ export function movies(state = [], action) {
   }
 }
 
-export const favorites = (state = [], {type, id}) => {
+export const favorites = (state = [], {type, id, vote_average, poster_path, title}) => {
   switch (type) {
     case 'ADD_FAVORITES': 
-      return [...state, {id}]
+      return [...state, {id, vote_average, poster_path, title}]
       break;
     default:
       return state;
   }
 }
 
-export const watchLater = (state = [], {type, id}) => {
+export const watchLater = (state = [], {type, id, vote_average, poster_path, title}) => {
   switch (type) {
     case 'ADD_WATCH_LATER': 
-      return [...state, {id}]
+      return [...state, {id, vote_average, poster_path, title}]
       break;
     default:
       return state;
