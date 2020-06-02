@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { API_KEY, PATH_BASE, PATH_MOVIE } from '../../api';
-import { movieFetchData, addFavorite, addWatchLater, removeFavorite, removeWatchLater } from '../../actions/moviesAction';
+import { movieFetchData, addFavorite, addWatchLater, removeFavorite, removeWatchLater, removeMovie } from '../../actions/moviesAction';
 
 import './movie.sass'
 
@@ -36,6 +36,10 @@ class Movie extends Component {
     const MOVIE_ID = this.props.match.params.id;
 
     this.props.fetchData(`${PATH_BASE}${PATH_MOVIE}/${MOVIE_ID}?api_key=${API_KEY}&append_to_response=videos&language=ru`);
+  }
+
+  componentWillUnmount = () => {
+    this.props.removeMovie()
   }
 
   toggleFavoriteClick = (id, voteAverage, posterPath, title) => {
@@ -127,6 +131,7 @@ const mapDispatchToProps = (dispatch) => {
     removeFavorite: (id) => dispatch(removeFavorite(id)),
     addWatchLater: (id, vote_average, poster_path, title) => dispatch(addWatchLater(id, vote_average, poster_path, title)),
     removeWatchLater: (id) => dispatch(removeWatchLater(id)),
+    removeMovie: () => dispatch(removeMovie())
   };
 };
 

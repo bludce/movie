@@ -32,6 +32,8 @@ export function movie(state = [], action) {
   switch (action.type) {
       case 'MOVIE_FETCH_DATA_SUCCESS':
           return action.movie;
+      case 'REMOVE_MOVIE':
+        return [];
 
       default:
           return state;

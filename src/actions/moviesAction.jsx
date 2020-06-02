@@ -66,6 +66,12 @@ export function MovieFetchDataSuccess(movie) {
   };
 }
 
+export function removeMovie() {
+  return {
+    type: 'REMOVE_MOVIE',
+  };
+}
+
 export const addFavorite = (id, vote_average, poster_path, title) => ({
   type: 'ADD_FAVORITES',
   id, vote_average, poster_path, title
