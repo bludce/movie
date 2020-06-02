@@ -14,7 +14,7 @@ class Main extends Component {
 
   render () {
 
-    const { movies , addFavorite, addWatchLater, removeFavorite, removeWatchLater} = this.props;
+    const { movies , favorites, watchLater, addFavorite, addWatchLater, removeFavorite, removeWatchLater} = this.props;
     const { results, page } = movies;
 
     return (
@@ -23,6 +23,8 @@ class Main extends Component {
         { results &&
           <List
             list={results}
+            favorites={favorites}
+            watchLater={watchLater}
             addFavorite={addFavorite}
             removeFavorite={removeFavorite}
             addWatchLater={addWatchLater}

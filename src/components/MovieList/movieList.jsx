@@ -1,9 +1,9 @@
 import React from 'react';
-import MovieItem from '../../components/MovieItem/movieItem';
+import MovieItem from '../../containers/MovieItem/movieItem';
 
 import './movieList.sass'
 
-const List = ({list, addFavorite, addWatchLater, removeFavorite, removeWatchLater}) => {
+const List = ({list, addFavorite, addWatchLater, removeFavorite, removeWatchLater, favorites, watchLater}) => {
 
   const movieItems = list.map(movie => {
     return <MovieItem
@@ -12,6 +12,8 @@ const List = ({list, addFavorite, addWatchLater, removeFavorite, removeWatchLate
               voteAverage={movie.vote_average}
               posterPath={movie.poster_path}
               title={movie.title}
+              favorites={favorites}
+              watchLater={watchLater}
               addFavorite={addFavorite}
               removeFavorite={removeFavorite}
               removeWatchLater={removeWatchLater}

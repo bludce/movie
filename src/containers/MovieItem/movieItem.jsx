@@ -10,6 +10,27 @@ class MovieItem extends Component {
     isWatchLater: false,
   }
 
+  componentDidMount() {
+    const {isFavorite, isWatchLater} = this.setState
+    const {favorites, watchLater, id} = this.props
+
+    favorites.some((item) => {
+      if (item.id == id) {
+        this.setState({
+          isFavorite: !isFavorite
+        })
+      }
+    })
+
+    watchLater.some((item) => {
+      if (item.id == id) {
+        this.setState({
+          isWatchLater: !isWatchLater
+        })
+      }
+    })
+  }
+
   toggleFavoriteClick = (id, voteAverage, posterPath, title) => {
     const {isFavorite} = this.state
     this.setState({

@@ -28,6 +28,16 @@ export function movies(state = [], action) {
   }
 }
 
+export function movie(state = [], action) {
+  switch (action.type) {
+      case 'MOVIE_FETCH_DATA_SUCCESS':
+          return action.movie;
+
+      default:
+          return state;
+  }
+}
+
 export const favorites = (state = [], {type, id, vote_average, poster_path, title}) => {
   switch (type) {
     case 'ADD_FAVORITES': 

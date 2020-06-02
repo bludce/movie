@@ -1,0 +1,88 @@
+.single-movie
+  min-height: 100%
+  position: relative
+
+  &__backdrop
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: .2;
+    &:after 
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: linear-gradient(180deg,hsla(0,0%,100%,0) 0,#222b31 60%)
+
+  &__content 
+    display: flex
+    position: relative
+    padding: 9em 12em 9em 6em
+    z-index: 1
+
+  &__data 
+    padding: 0 25px
+
+  &__title 
+    font-weight: 600
+    margin: 20px 0
+    font-size: 26px
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2)
+
+  
+
+.single-movie-actions
+  display: flex
+  &__item
+    display: flex
+    align-items: center
+    margin-right: 10px
+    cursor: pointer
+    transition: color .4s ease
+
+.single-movie-action
+  &__circle 
+    border: 2px solid #fff
+    border-radius: 50%
+    width: 40px
+    height: 40px
+    position: relative
+    transition: border .4s ease
+    &:hover
+      border-color: #f10c63
+      & .single-action
+        fill: #f10c63
+
+.single-action 
+  fill: #fff
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  transition: fill .4s ease
+  width: auto
+  height: 13px
+  &__favorite
+    &--isActive
+      fill: #f10c63
+    &:hover
+      fill: #f10c63
+  &__watchlater
+    &--isActive
+      fill: #3be5d9
+    &:hover
+      fill: #3be5d9
+
+.single-movie-overview
+  text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+  margin: 1em 0
+  &__title 
+    text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    color: #96a5b1
+    font-weight: 400
+    margin-bottom: 0
+    margin-top: 1em

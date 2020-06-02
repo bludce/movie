@@ -18,6 +18,26 @@ export function itemsFetchData(url) {
   };
 }
 
+export function movieFetchData(url) {
+  return (dispatch) => {
+    dispatch(MoviesIsLoading(true));
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+
+        dispatch(MoviesIsLoading(false));
+
+        return response;
+      })
+      .then((response) => response.json())
+      .then((movies) => dispatch(MovieFetchDataSuccess(movies)))
+      .catch(() => dispatch(MoviesHasErrored(true)));
+  };
+}
+
 export function MoviesHasErrored(bool) {
   return {
       type: 'MOVIES_HAS_ERRORED',
@@ -36,6 +56,13 @@ export function MoviesFetchDataSuccess(movies) {
   return {
     type: 'MOVIES_FETCH_DATA_SUCCESS',
     movies
+  };
+}
+
+export function MovieFetchDataSuccess(movie) {
+  return {
+    type: 'MOVIE_FETCH_DATA_SUCCESS',
+    movie
   };
 }
 

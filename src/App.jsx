@@ -6,6 +6,7 @@ import './index.sass';
 import Header from './components/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
 import Main from './containers/Main/main'
+import Movie from './containers/Movie/movie'
 
 class App extends Component {
 
@@ -30,6 +31,13 @@ class App extends Component {
               <Route exact path="/popular" />
               <Route exact path="/top-rated" />
               <Route exact path="/coming-soon" />
+              <Route path="/movie/:id"
+                  render={props => (
+                    <Movie {...props}
+                      id={props.match.params.id}
+                     />
+                  )}
+                />
               <Route path="/search" />
               <Route exact path="/favorites" />
               <Route exact path="/watch-later" />
