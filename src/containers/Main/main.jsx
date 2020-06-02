@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { API_KEY, PATH_BASE, PATH_MOVIE, DEFAULT_PAGE, PATH_PAGE, PATH_POPULAR } from '../../api';
 import List from '../../components/MovieList/movieList';
 import { connect } from 'react-redux';
-import { itemsFetchData, addFavorite, addWatchLater } from '../../actions/moviesAction';
+import { itemsFetchData, addFavorite, addWatchLater, removeFavorite, removeWatchLater } from '../../actions/moviesAction';
 
 import './main.sass'
 
 class Main extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchData(`${PATH_BASE}${PATH_MOVIE}${PATH_POPULAR}?api_key=${API_KEY}&${PATH_PAGE}&language=ru`);
@@ -18,7 +14,7 @@ class Main extends Component {
 
   render () {
 
-    const { movies , addFavorite, addWatchLater} = this.props;
+    const { movies , addFavorite, addWatchLater, removeFavorite, removeWatchLater} = this.props;
     const { results, page } = movies;
 
     return (
@@ -28,7 +24,9 @@ class Main extends Component {
           <List
             list={results}
             addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
             addWatchLater={addWatchLater}
+            removeWatchLater={removeWatchLater}
          />
         }
 
@@ -53,7 +51,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (url) => dispatch(itemsFetchData(url)),
     addFavorite: (id, vote_average, poster_path, title) => dispatch(addFavorite(id, vote_average, poster_path, title)),
+    removeFavorite: (id) => dispatch(removeFavorite(id)),
     addWatchLater: (id, vote_average, poster_path, title) => dispatch(addWatchLater(id, vote_average, poster_path, title)),
+    removeWatchLater: (id) => dispatch(removeWatchLater(id)),
   };
 };
 

@@ -44,8 +44,18 @@ export const addFavorite = (id, vote_average, poster_path, title) => ({
   id, vote_average, poster_path, title
 });
 
+export const removeFavorite = (id) => ({
+  type: 'REMOVE_FAVORITES',
+  id
+});
+
 
 export const addWatchLater = (id, vote_average, poster_path, title) => ({
   type: 'ADD_WATCH_LATER',
   id, vote_average, poster_path, title
+});
+
+export const removeWatchLater = (id) => ({
+  type: 'REMOVE_WATCH_LATER',
+  id
 });
