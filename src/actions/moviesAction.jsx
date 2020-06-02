@@ -39,24 +39,13 @@ export function MoviesFetchDataSuccess(movies) {
   };
 }
 
-export const favorites = (id) => ({
+export const addFavorite = (id) => ({
   type: 'ADD_FAVORITES',
   id
 });
 
-export const addFavorite = (id) => {
-  return (dispatch) => {
-    dispatch(favorites(id))
-  };
-}
 
-export const watchLater = (id) => ({
+export const addWatchLater = (id) => ({
   type: 'ADD_WATCH_LATER',
   id
 });
-
-export const addWatchLater = (id) => {
-  return (dispatch) => {
-    dispatch(watchLater(id))
-  };
-}
