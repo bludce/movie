@@ -7,6 +7,7 @@ import Header from './components/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
 import Main from './containers/Main/main'
 import Movie from './containers/Movie/movie'
+import Login from './containers/Login/login'
 
 class App extends Component {
 
@@ -21,7 +22,7 @@ class App extends Component {
               {/* footer */}
             </div>
             <div className="content-wrapper">
-              <Route exact path="/login" />
+              <Route exact path="/login" component={Login}/>
               <Route exact path="/logout"  />
               <Route exact path="/"
                 render={

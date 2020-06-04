@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { movies, MoviesHasErrored, MoviesIsLoading, favorites, watchLater, movie } from './moviesReducer';
+import { user } from './userReducer';
 
 export default combineReducers({
     movies,
@@ -7,5 +8,6 @@ export default combineReducers({
     MoviesIsLoading,
     favorites,
     watchLater,
-    movie
+    movie,
+    user
 });
