@@ -29,3 +29,17 @@ export const UserFetchDataSuccess = (user) => {
     auth: true
   };
 }
+
+export const logout = () => {
+  return (dispatch) => {
+    app.auth().signOut().then(() => {
+      dispatch(Userlogout())
+    });
+  };
+}
+
+export const Userlogout = () => {
+  return {
+    type: 'LOGOUT',
+  };
+}

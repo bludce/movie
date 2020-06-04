@@ -3,13 +3,27 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './index.sass';
 
-import Header from './components/Header/header'
+import {app} from './firebase'
+
+import Header from './containers/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
 import Main from './containers/Main/main'
 import Movie from './containers/Movie/movie'
 import Login from './containers/Login/login'
+import Logout from './containers/Logout/logout'
 
 class App extends Component {
+
+  componentWillMount = () => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        
+
+      } else {
+        
+      }
+    })
+  }
 
   render() {
     return (
@@ -19,11 +33,10 @@ class App extends Component {
           <div className="main-wrapper">
             <div className="sidebar-wrapper">
               <Sidebar />
-              {/* footer */}
             </div>
             <div className="content-wrapper">
               <Route exact path="/login" component={Login}/>
-              <Route exact path="/logout"  />
+              <Route exact path="/logout" component={Logout} />
               <Route exact path="/"
                 render={
                   ()=><Main title="Фильмы" />

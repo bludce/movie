@@ -1,0 +1,16 @@
+.header
+  display: grid
+  grid-template-columns: 18% 72% auto
+  background-color: #f10c63
+  & > div:nth-child(2n+1)
+    background-color: #e0105f
+
+.user-wrapper 
+	position: relative 
+.user-wrapper-avatar 
+	position: absolute 
+	top: 50% 
+	left: 50% 
+	transform: translate(-50%, -50%) 
+	border-radius: 50% 
+	cursor: pointer 

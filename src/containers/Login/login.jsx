@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authWithEmailPassword } from '../../actions/userAction';
 
-import joinUs from '../../assets/img/join-us.jpg';
 import './login.sass';
 
 class Login extends Component {
@@ -21,12 +20,9 @@ class Login extends Component {
 
   authWithEmailPassword(e) {
     e.preventDefault()
-
     const {email, password} = this.state
 
     this.props.authWithEmailPasswordClick(email, password)
-    
-    
   }
   
   render () {
