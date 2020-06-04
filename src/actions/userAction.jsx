@@ -22,6 +22,14 @@ export const authWithEmailPassword = (email, password) => {
   };
 }
 
+export const defaultRender = (user) => {
+  return {
+    type: 'DEFAULT_USER',
+    user: user.email,
+    auth: true
+  };
+}
+
 export const UserFetchDataSuccess = (user) => {
   return {
     type: 'USER_FETCH_DATA_SUCCESS',

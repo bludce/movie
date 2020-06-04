@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './index.sass';
 
 import {app} from './firebase'
+import { defaultRender } from './actions/userAction';
 
 import Header from './containers/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
@@ -17,10 +19,8 @@ class App extends Component {
   componentWillMount = () => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
-        
-
-      } else {
-        
+        console.log(user)
+        this.props.defaultRender(user)
       }
     })
   }
@@ -63,4 +63,16 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    defaultRender: (user) => dispatch(defaultRender(user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

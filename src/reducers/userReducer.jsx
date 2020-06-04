@@ -10,6 +10,11 @@ export function user(state = initialState, action) {
           email: action.user,
           auth: action.auth,
         }
+      case 'DEFAULT_USER':
+        return {
+          email: action.user,
+          auth: action.auth,
+        }
       case 'LOGOUT':
         return {
           email: '',
