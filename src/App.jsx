@@ -7,6 +7,8 @@ import './index.sass';
 import {app} from './firebase'
 import { defaultRender } from './actions/userAction';
 
+import { PATH_POPULAR, PATH_DISCOVER, PATH_TOP_RATED } from './api';
+
 import Header from './containers/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
 import Main from './containers/Main/main'
@@ -19,7 +21,6 @@ class App extends Component {
   componentWillMount = () => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user)
         this.props.defaultRender(user)
       }
     })
@@ -38,12 +39,14 @@ class App extends Component {
               <Route exact path="/login" component={Login}/>
               <Route exact path="/logout" component={Logout} />
               <Route exact path="/"
-                render={
-                  ()=><Main title="Фильмы" />
-                }
+                
               />
-              <Route exact path="/popular" />
-              <Route exact path="/top-rated" />
+              <Route exact path="/popular" render={
+                ()=><Main title="Популярное" section={PATH_POPULAR}/>
+              }/>
+              <Route exact path="/top-rated" render={
+                ()=><Main title="Топ рейтинга" section={PATH_TOP_RATED}/>
+              }/>
               <Route exact path="/coming-soon" />
               <Route path="/movie/:id"
                   render={props => (

@@ -9,7 +9,8 @@ import './main.sass'
 class Main extends Component {
 
   componentDidMount() {
-    this.props.fetchData(`${PATH_BASE}${PATH_MOVIE}${PATH_POPULAR}?api_key=${API_KEY}&${PATH_PAGE}&language=ru`);
+    const {fetchData, section} = this.props;
+    fetchData(`${PATH_BASE}${PATH_MOVIE}${section}?api_key=${API_KEY}&${PATH_PAGE}&language=ru`);
   }
 
   render () {
