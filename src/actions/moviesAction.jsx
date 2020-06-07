@@ -72,9 +72,9 @@ export function removeMovie() {
   };
 }
 
-export const addFavorite = (id, vote_average, poster_path, title) => ({
+export const addFavorite = (id) => ({
   type: 'ADD_FAVORITES',
-  id, vote_average, poster_path, title
+  id
 });
 
 export const removeFavorite = (id) => ({
@@ -83,9 +83,9 @@ export const removeFavorite = (id) => ({
 });
 
 
-export const addWatchLater = (id, vote_average, poster_path, title) => ({
+export const addWatchLater = (id) => ({
   type: 'ADD_WATCH_LATER',
-  id, vote_average, poster_path, title
+  id
 });
 
 export const removeWatchLater = (id) => ({

@@ -40,10 +40,10 @@ export function movie(state = [], action) {
   }
 }
 
-export const favorites = (state = [], {type, id, vote_average, poster_path, title}) => {
+export const favorites = (state = [], {type, id}) => {
   switch (type) {
     case 'ADD_FAVORITES': 
-      return [...state, {id, vote_average, poster_path, title}]
+      return [...state, {id}]
     case 'REMOVE_FAVORITES': 
       return [...state].filter(movie => movie.id !== id)
     default:
@@ -51,10 +51,10 @@ export const favorites = (state = [], {type, id, vote_average, poster_path, titl
   }
 }
 
-export const watchLater = (state = [], {type, id, vote_average, poster_path, title}) => {
+export const watchLater = (state = [], {type, id}) => {
   switch (type) {
     case 'ADD_WATCH_LATER': 
-      return [...state, {id, vote_average, poster_path, title}]
+      return [...state, {id}]
     case 'REMOVE_WATCH_LATER': 
       return [...state].filter(movie => movie.id !== id)
     default:
