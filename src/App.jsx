@@ -7,7 +7,7 @@ import './index.sass';
 import {app} from './firebase'
 import { defaultRender } from './actions/userAction';
 
-import { PATH_POPULAR, PATH_DISCOVER, PATH_TOP_RATED } from './api';
+import { PATH_POPULAR, PATH_DISCOVER, PATH_TOP_RATED, PATH_UPCOMING } from './api';
 
 import Header from './containers/Header/header'
 import Sidebar from './components/Sidebar/sidebar'
@@ -47,7 +47,9 @@ class App extends Component {
               <Route exact path="/top-rated" render={
                 ()=><Main title="Топ рейтинга" section={PATH_TOP_RATED}/>
               }/>
-              <Route exact path="/coming-soon" />
+              <Route exact path="/coming-soon" render={
+                ()=><Main title="Скоро выйдет" section={PATH_UPCOMING}/>
+              }/>
               <Route path="/movie/:id"
                   render={props => (
                     <Movie {...props}
