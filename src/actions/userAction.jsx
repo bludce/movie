@@ -1,23 +1,43 @@
 import { app } from '../firebase';
+import { error, loading } from './indexAction'
 
 export const authWithEmailPassword = (email, password) => {
   return (dispatch) => {
+    dispatch(loading(true));
+
     app.auth().fetchSignInMethodsForEmail(email)
     .then((providers) => {
       if (providers.length === 0) {
+       
         // Если нет аккаунта, то создаем нового пользователя
         return app.auth().createUserWithEmailAndPassword(email, password)
       } else if (providers.indexOf("password") === -1) {
-        console.log('Please, try alternative login.');
+        dispatch(error(true))
       } else {
         return app.auth().signInWithEmailAndPassword(email, password)
       }
     })
     .then((user) => {
+      dispatch(loading(false));
       dispatch(UserFetchDataSuccess(user))
     })
     .catch((error) => {
       console.log(error.message);
+    })
+  };
+}
+
+export const getDefaultUserInfo = (user) => {
+  return (dispatch) => {
+    dispatch(loading(true));
+
+    app.database().ref(user.uid).once('value').then((snapshot) => {
+      const firebaseUserLists = snapshot.val();
+      if (firebaseUserLists) {
+        dispatch(loading(false));
+        dispatch(defaultUser(user))
+        dispatch(getDefaultUserMovie(user))
+      }
     })
   };
 }
@@ -31,9 +51,9 @@ export const defaultUser = (user) => {
 }
 
 export const getDefaultUserMovie = (user) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     
-    app.database().ref(user).once('value').then((snapshot) => {
+    app.database().ref(user.uid).once('value').then((snapshot) => {
       const firebaseUserLists = snapshot.val();
       if (firebaseUserLists) {
         dispatch(defaultUserMovie(firebaseUserLists))

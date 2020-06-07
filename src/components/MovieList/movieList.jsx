@@ -3,7 +3,7 @@ import MovieItem from '../../containers/MovieItem/movieItem';
 
 import './movieList.sass'
 
-const List = ({list, addToUserList, removeToUserList, userList}) => {
+const List = ({list, addToUserList, removeToUserList, userList, user}) => {
 
   const movieItems = list.map(movie => {
     return <MovieItem
@@ -15,6 +15,7 @@ const List = ({list, addToUserList, removeToUserList, userList}) => {
               userList = {userList}
               addToUserList={addToUserList}
               removeToUserList={removeToUserList}
+              user={user}
             />
   });
 

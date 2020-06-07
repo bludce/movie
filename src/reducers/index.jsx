@@ -1,11 +1,32 @@
 import { combineReducers } from 'redux';
-import { movies, MoviesHasErrored, MoviesIsLoading, userList, movie } from './moviesReducer';
+import { movies, userList, movie } from './moviesReducer';
 import { user } from './userReducer';
+
+function error(state = false, action) {
+    switch (action.type) {
+        case 'ERROR':
+            return action.hasErrored;
+  
+        default:
+            return state;
+    }
+  }
+  
+function loading(state = false, action) {
+    switch (action.type) {
+        case 'LOADING':
+            return action.isLoading;
+  
+        default:
+            return state;
+    }
+  }
+
 
 export default combineReducers({
     movies,
-    MoviesHasErrored,
-    MoviesIsLoading,
+    error,
+    loading,
     userList,
     movie,
     user

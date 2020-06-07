@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './index.sass';
 
 import {app} from './firebase'
-import { defaultUser, getDefaultUserMovie } from './actions/userAction';
+import { getDefaultUserInfo } from './actions/userAction';
 
 import { PATH_POPULAR, PATH_DISCOVER, PATH_TOP_RATED, PATH_UPCOMING } from './api';
 
@@ -15,22 +15,26 @@ import Main from './containers/Main/main'
 import Movie from './containers/Movie/movie'
 import Login from './containers/Login/login'
 import Logout from './containers/Logout/logout'
+import Loading from './components/Loading/loading'
 
 class App extends Component {
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.props.defaultUser(user)
-        this.props.getDefaultUserMovie(user.uid)
+        this.props.getDefaultUserInfo(user)
       }
     })
   }
 
   render() {
+    
     return (
       <BrowserRouter>
         <div className="app">
+          {this.props.loading &&
+            <Loading />
+          }
           <Header />
           <div className="main-wrapper">
             <div className="sidebar-wrapper">
@@ -72,13 +76,13 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    loading: state.loading
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    defaultUser: (user) => dispatch(defaultUser(user)),
-    getDefaultUserMovie: (user) => dispatch(getDefaultUserMovie(user))
+    getDefaultUserInfo: (user) => dispatch(getDefaultUserInfo(user)),
   };
 };
 

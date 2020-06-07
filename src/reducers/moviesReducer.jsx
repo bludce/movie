@@ -1,23 +1,3 @@
-export function MoviesHasErrored(state = false, action) {
-  switch (action.type) {
-      case 'MOVIES_HAS_ERRORED':
-          return action.hasErrored;
-
-      default:
-          return state;
-  }
-}
-
-export function MoviesIsLoading(state = false, action) {
-  switch (action.type) {
-      case 'MOVIES_IS_LOADING':
-          return action.isLoading;
-
-      default:
-          return state;
-  }
-}
-
 export function movies(state = [], action) {
   switch (action.type) {
       case 'MOVIES_FETCH_DATA_SUCCESS':
@@ -40,12 +20,12 @@ export function movie(state = [], action) {
   }
 }
 
-const initialUsetListState = {
+const initialUserListState = {
   favorites: [], 
   watchLater: []
 }
 
-export const userList = (state = initialUsetListState, {type, id, list, moviesList}) => {
+export const userList = (state = initialUserListState, {type, id, list, moviesList}) => {
   switch (type) {
     case 'ADD_TO_USER_LIST': 
       return {

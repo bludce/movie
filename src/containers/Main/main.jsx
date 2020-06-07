@@ -15,7 +15,7 @@ class Main extends Component {
 
   render () {
 
-    const { movies , userList, addToUserList, removeToUserList} = this.props;
+    const { movies , userList, addToUserList, removeToUserList, user} = this.props;
     const { results, page } = movies;
 
     return (
@@ -27,6 +27,7 @@ class Main extends Component {
             userList={userList}
             addToUserList={addToUserList}
             removeToUserList={removeToUserList}
+            user={user}
          />
         }
 
@@ -43,6 +44,7 @@ const mapStateToProps = (state) => {
     hasErrored: state.MoviesHasErrored,
     isLoading: state.MoviesIsLoading,
     userList: state.userList,
+    user: state.user
   };
 };
 
