@@ -20,7 +20,6 @@ export function user(state = initialState, action) {
           email: '',
           auth: false,
         }
-
       default:
           return state;
   }

@@ -22,11 +22,33 @@ export const authWithEmailPassword = (email, password) => {
   };
 }
 
-export const defaultRender = (user) => {
+export const defaultUser = (user) => {
   return {
     type: 'DEFAULT_USER',
     user: user.email,
     auth: true
+  };
+}
+
+export const getDefaultUserMovie = (user) => {
+  return (dispatch) => {
+    
+    app.database().ref(user).once('value').then((snapshot) => {
+      const firebaseUserLists = snapshot.val();
+      if (firebaseUserLists) {
+        dispatch(defaultUserMovie(firebaseUserLists))
+      }
+    })
+
+      
+
+  };
+}
+
+export const defaultUserMovie = (moviesList) => {
+  return {
+    type: 'DEFAULT_USER_MOVIE',
+    moviesList
   };
 }
 

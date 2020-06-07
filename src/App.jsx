@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './index.sass';
 
 import {app} from './firebase'
-import { defaultRender } from './actions/userAction';
+import { defaultUser, getDefaultUserMovie } from './actions/userAction';
 
 import { PATH_POPULAR, PATH_DISCOVER, PATH_TOP_RATED, PATH_UPCOMING } from './api';
 
@@ -21,7 +21,8 @@ class App extends Component {
   componentWillMount = () => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.props.defaultRender(user)
+        this.props.defaultUser(user)
+        this.props.getDefaultUserMovie(user.uid)
       }
     })
   }
@@ -76,7 +77,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    defaultRender: (user) => dispatch(defaultRender(user)),
+    defaultUser: (user) => dispatch(defaultUser(user)),
+    getDefaultUserMovie: (user) => dispatch(getDefaultUserMovie(user))
   };
 };
 

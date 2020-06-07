@@ -45,18 +45,25 @@ const initialUsetListState = {
   watchLater: []
 }
 
-export const userList = (state = initialUsetListState, {type, id, list}) => {
+export const userList = (state = initialUsetListState, {type, id, list, moviesList}) => {
   switch (type) {
     case 'ADD_TO_USER_LIST': 
       return {
         ...state,
-        [list]: [...state[list], {id}]
+        [list]: [...state[list], id]
       }
-
     case 'REMOVE_TO_USER_LIST':
       return {
         ...state,
-        [list]: state[list].filter(movie => movie.id !== id)
+        [list]: [...state[list]].filter(movie => movie !== id)
+      }
+    case 'DEFAULT_USER_MOVIE':
+      const favorites = Object.values(moviesList.favorites)
+      const watchLater = Object.values(moviesList.watchLater)
+      return {
+        ...state,
+        'favorites':  favorites,
+        'watchLater': watchLater
       }
     default:
       return state;

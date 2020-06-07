@@ -19,7 +19,7 @@ class Movie extends Component {
     const {favorites, watchLater} = userList
 
     favorites.some((item) => {
-      if (item.id == id) {
+      if (item == id) {
         this.setState({
           isFavorite: !isFavorite
         })
@@ -27,7 +27,7 @@ class Movie extends Component {
     })
 
     watchLater.some((item) => {
-      if (item.id == id) {
+      if (item == id) {
         this.setState({
           isWatchLater: !isWatchLater
         })
