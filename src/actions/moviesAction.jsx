@@ -1,3 +1,5 @@
+import { app } from '../firebase';
+
 export function itemsFetchData(url) {
   return (dispatch) => {
     dispatch(MoviesIsLoading(true));
@@ -38,6 +40,44 @@ export function movieFetchData(url) {
   };
 }
 
+export function addToUserList(id, list) {
+  return (dispatch) => {
+    
+      const userUid = app.auth().currentUser.uid;
+  
+      const onComplete = (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log('success')
+          dispatch(addUserList(id, list))
+        }
+      };
+      app.database().ref(userUid).child(list).update({
+        [id]: id
+      }, onComplete);
+      
+  };
+}
+
+export function removeToUserList(id, list) {
+  return (dispatch) => {
+    
+      const userUid = app.auth().currentUser.uid;
+  
+      const onComplete = (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log('success')
+          dispatch(removeUserList(id,list))
+        }
+      };
+      app.database().ref(userUid).child(list).child(id).remove(onComplete);
+      
+  };
+}
+
 export function MoviesHasErrored(bool) {
   return {
       type: 'MOVIES_HAS_ERRORED',
@@ -72,23 +112,12 @@ export function removeMovie() {
   };
 }
 
-export const addFavorite = (id) => ({
-  type: 'ADD_FAVORITES',
-  id
+export const addUserList = (id, list) => ({
+  type: 'ADD_TO_USER_LIST',
+  id, list
 });
 
-export const removeFavorite = (id) => ({
-  type: 'REMOVE_FAVORITES',
-  id
-});
-
-
-export const addWatchLater = (id) => ({
-  type: 'ADD_WATCH_LATER',
-  id
-});
-
-export const removeWatchLater = (id) => ({
-  type: 'REMOVE_WATCH_LATER',
-  id
+export const removeUserList = (id, list) => ({
+  type: 'REMOVE_TO_USER_LIST',
+  id, list
 });

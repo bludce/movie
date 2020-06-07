@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API_KEY, PATH_BASE, PATH_MOVIE, DEFAULT_PAGE, PATH_PAGE, PATH_POPULAR } from '../../api';
 import List from '../../components/MovieList/movieList';
 import { connect } from 'react-redux';
-import { itemsFetchData, addFavorite, addWatchLater, removeFavorite, removeWatchLater } from '../../actions/moviesAction';
+import { itemsFetchData, addToUserList, removeToUserList} from '../../actions/moviesAction';
 
 import './main.sass'
 
@@ -15,7 +15,7 @@ class Main extends Component {
 
   render () {
 
-    const { movies , favorites, watchLater, addFavorite, addWatchLater, removeFavorite, removeWatchLater} = this.props;
+    const { movies , userList, addToUserList, removeToUserList} = this.props;
     const { results, page } = movies;
 
     return (
@@ -24,12 +24,9 @@ class Main extends Component {
         { results &&
           <List
             list={results}
-            favorites={favorites}
-            watchLater={watchLater}
-            addFavorite={addFavorite}
-            removeFavorite={removeFavorite}
-            addWatchLater={addWatchLater}
-            removeWatchLater={removeWatchLater}
+            userList={userList}
+            addToUserList={addToUserList}
+            removeToUserList={removeToUserList}
          />
         }
 
@@ -45,18 +42,15 @@ const mapStateToProps = (state) => {
     movies: state.movies,
     hasErrored: state.MoviesHasErrored,
     isLoading: state.MoviesIsLoading,
-    favorites: state.favorites,
-    watchLater: state.watchLater
+    userList: state.userList,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (url) => dispatch(itemsFetchData(url)),
-    addFavorite: (id) => dispatch(addFavorite(id)),
-    removeFavorite: (id) => dispatch(removeFavorite(id)),
-    addWatchLater: (id) => dispatch(addWatchLater(id)),
-    removeWatchLater: (id) => dispatch(removeWatchLater(id)),
+    addToUserList: (id, list) => dispatch(addToUserList(id, list)),
+    removeToUserList: (id, list) => dispatch(removeToUserList(id,list)),
   };
 };
 

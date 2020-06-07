@@ -40,23 +40,24 @@ export function movie(state = [], action) {
   }
 }
 
-export const favorites = (state = [], {type, id}) => {
-  switch (type) {
-    case 'ADD_FAVORITES': 
-      return [...state, {id}]
-    case 'REMOVE_FAVORITES': 
-      return [...state].filter(movie => movie.id !== id)
-    default:
-      return state;
-  }
+const initialUsetListState = {
+  favorites: [], 
+  watchLater: []
 }
 
-export const watchLater = (state = [], {type, id}) => {
+export const userList = (state = initialUsetListState, {type, id, list}) => {
   switch (type) {
-    case 'ADD_WATCH_LATER': 
-      return [...state, {id}]
-    case 'REMOVE_WATCH_LATER': 
-      return [...state].filter(movie => movie.id !== id)
+    case 'ADD_TO_USER_LIST': 
+      return {
+        ...state,
+        [list]: [...state[list], {id}]
+      }
+
+    case 'REMOVE_TO_USER_LIST':
+      return {
+        ...state,
+        [list]: state[list].filter(movie => movie.id !== id)
+      }
     default:
       return state;
   }
