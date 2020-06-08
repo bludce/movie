@@ -18,7 +18,7 @@ class UserList extends Component {
   }
 
   getMovieObject = async (movieId) => {
-    const response = await fetch(`${PATH_BASE}${PATH_MOVIE}/${movieId}?api_key=${API_KEY}&append_to_response=videos`);
+    const response = await fetch(`${PATH_BASE}${PATH_MOVIE}/${movieId}?api_key=${API_KEY}&append_to_response=videos&language=ru`);
     return await response.json();
   }
 
