@@ -16,6 +16,7 @@ import Movie from './containers/Movie/movie'
 import Login from './containers/Login/login'
 import Logout from './containers/Logout/logout'
 import Loading from './components/Loading/loading'
+import UserList from './containers/UserList/userList'
 
 class App extends Component {
 
@@ -63,8 +64,12 @@ class App extends Component {
                   )}
                 />
               <Route path="/search" />
-              <Route exact path="/favorites" />
-              <Route exact path="/watch-later" />
+              <Route exact path="/favorites" render={
+                ()=><UserList title="Любимые" list="favorites"/>
+              }/>
+              <Route exact path="/watch-later" render={
+                ()=><UserList title="Посмотреть позже" list="watchLater"/>
+              }/>
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { app } from '../firebase';
+import { error, loading} from './indexAction'
 
 export function itemsFetchData(url) {
   return (dispatch) => {
-    dispatch(MoviesIsLoading(true));
+    dispatch(loading(true));
 
     fetch(url)
       .then((response) => {
@@ -10,19 +11,19 @@ export function itemsFetchData(url) {
           throw Error(response.statusText);
         }
 
-        dispatch(MoviesIsLoading(false));
+        dispatch(loading(false));
 
         return response;
       })
       .then((response) => response.json())
       .then((movies) => dispatch(MoviesFetchDataSuccess(movies)))
-      .catch(() => dispatch(MoviesHasErrored(true)));
+      .catch(() => dispatch(error(true)));
   };
 }
 
 export function movieFetchData(url) {
   return (dispatch) => {
-    dispatch(MoviesIsLoading(true));
+    dispatch(loading(true));
 
     fetch(url)
       .then((response) => {
@@ -30,13 +31,13 @@ export function movieFetchData(url) {
           throw Error(response.statusText);
         }
 
-        dispatch(MoviesIsLoading(false));
+        dispatch(loading(false));
 
         return response;
       })
       .then((response) => response.json())
       .then((movies) => dispatch(MovieFetchDataSuccess(movies)))
-      .catch(() => dispatch(MoviesHasErrored(true)));
+      .catch(() => dispatch(error(true)));
   };
 }
 
@@ -75,20 +76,6 @@ export function removeToUserList(id, list) {
       };
       app.database().ref(userUid).child(list).child(id).remove(onComplete);
       
-  };
-}
-
-export function MoviesHasErrored(bool) {
-  return {
-      type: 'MOVIES_HAS_ERRORED',
-      hasErrored: bool
-  };
-}
-
-export function MoviesIsLoading(bool) {
-  return {
-      type: 'MOVIES_IS_LOADING',
-      isLoading: bool
   };
 }
 
