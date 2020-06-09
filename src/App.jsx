@@ -18,6 +18,7 @@ import Logout from './containers/Logout/logout'
 import Loading from './components/Loading/loading'
 import UserList from './containers/UserList/userList'
 import SearcResult from './containers/SearchResult/searchResult'
+import Discover from './containers/Discover/discover'
 
 class App extends Component {
 
@@ -45,9 +46,9 @@ class App extends Component {
             <div className="content-wrapper">
               <Route exact path="/login" component={Login}/>
               <Route exact path="/logout" component={Logout} />
-              <Route exact path="/"
-                
-              />
+              <Route exact path="/" render={
+                ()=><Discover title="Фильмы" section={PATH_DISCOVER}/>
+              }/>
               <Route exact path="/popular" render={
                 ()=><Main title="Популярное" section={PATH_POPULAR}/>
               }/>
