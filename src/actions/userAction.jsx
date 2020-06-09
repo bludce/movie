@@ -35,7 +35,9 @@ export const getDefaultUserInfo = (user) => {
       const firebaseUserLists = snapshot.val();
       if (firebaseUserLists) {
         dispatch(loading(false));
+        
         dispatch(defaultUser(user))
+        dispatch(getAuth());
         dispatch(getDefaultUserMovie(user))
       }
     })
@@ -46,7 +48,6 @@ export const defaultUser = (user) => {
   return {
     type: 'DEFAULT_USER',
     user: user.email,
-    auth: true
   };
 }
 
@@ -59,9 +60,6 @@ export const getDefaultUserMovie = (user) => {
         dispatch(defaultUserMovie(firebaseUserLists))
       }
     })
-
-      
-
   };
 }
 
@@ -76,7 +74,15 @@ export const UserFetchDataSuccess = (user) => {
   return {
     type: 'USER_FETCH_DATA_SUCCESS',
     user: user.user.email,
-    auth: true
+  };
+}
+
+
+
+export const getAuth = () => {
+  return {
+    type: 'USER_AUTH',
+    auth: true,
   };
 }
 

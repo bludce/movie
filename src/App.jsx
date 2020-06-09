@@ -84,6 +84,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    auth: state.auth,
     loading: state.loading
   };
 };

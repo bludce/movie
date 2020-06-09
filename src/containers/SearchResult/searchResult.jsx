@@ -3,7 +3,7 @@ import List from '../../components/MovieList/movieList';
 import { API_KEY, PATH_BASE, PATH_MOVIE, PATH_SEARCH, DEFAULT_PAGE, PATH_PAGE } from '../../api';
 
 import { connect } from 'react-redux';
-import { itemsFetchData, searchText } from '../../actions/moviesAction';
+import { itemsFetchData } from '../../actions/moviesAction';
 
 class SearchResults extends Component {
 
@@ -13,7 +13,6 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
     const {fetchData} = this.props
 
     if (this.props.searchText !== prevProps.searchText) {

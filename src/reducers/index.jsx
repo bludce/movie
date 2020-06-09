@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { movies, userList, movie, searchText } from './moviesReducer';
-import { user } from './userReducer';
+import { user, auth } from './userReducer';
 
 function error(state = false, action) {
     switch (action.type) {
@@ -30,5 +30,6 @@ export default combineReducers({
     userList,
     movie,
     searchText,
-    user
+    user,
+    auth
 });

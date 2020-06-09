@@ -9,14 +9,15 @@ import './main.sass'
 class Main extends Component {
 
   componentDidMount() {
-    const {fetchData, section} = this.props;
+    const {fetchData, section } = this.props;
+
     fetchData(`${PATH_BASE}${PATH_MOVIE}${section}?api_key=${API_KEY}&${PATH_PAGE}&language=ru`);
   }
 
   render () {
 
-    const { movies , userList, addToUserList, removeToUserList, user} = this.props;
-    const { results, page } = movies;
+    const { movies , userList, addToUserList, removeToUserList, user, auth} = this.props;
+    const { results } = movies;
 
     return (
       <div className="content">
@@ -28,6 +29,7 @@ class Main extends Component {
             addToUserList={addToUserList}
             removeToUserList={removeToUserList}
             user={user}
+            auth={auth}
          />
         }
 
@@ -44,7 +46,8 @@ const mapStateToProps = (state) => {
     error: state.error,
     loading: state.loading,
     userList: state.userList,
-    user: state.user
+    user: state.user,
+    auth: state.auth
   };
 };
 

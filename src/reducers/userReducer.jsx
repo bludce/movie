@@ -1,26 +1,35 @@
-const initialState = {
+const initialStateUser = {
   email: '',
-  auth: false
 }
 
-export function user(state = initialState, action) {
+const initialStateAuth = false
+
+export function user(state = initialStateUser, action) {
   switch (action.type) {
       case 'USER_FETCH_DATA_SUCCESS':
         return {
           email: action.user,
-          auth: action.auth,
         }
       case 'DEFAULT_USER':
         return {
           email: action.user,
-          auth: action.auth,
         }
       case 'LOGOUT':
         return {
           email: '',
-          auth: false,
         }
       default:
           return state;
+  }
+}
+
+export function auth(state = initialStateAuth, action) {
+  switch (action.type) {
+    case 'USER_AUTH':
+      return action.auth
+    case 'LOGOUT':
+      return false
+    default:
+      return state;
   }
 }

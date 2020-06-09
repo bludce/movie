@@ -22,8 +22,8 @@ class Header extends Component {
   }
 
   render() {
-    const {user} = this.props
-    const {email, auth } = user
+    const {user, auth} = this.props
+    const {email } = user
 
     const {userMenuOpen} = this.state
     return (
@@ -54,6 +54,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    auth: state.auth
   };
 };
 const mapDispatchToProps = (dispatch) => {

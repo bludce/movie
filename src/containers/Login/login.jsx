@@ -28,7 +28,7 @@ class Login extends Component {
   render () {
 
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { auth } = this.props.user
+    const { auth } = this.props
 
     if (auth) {
       return (
@@ -67,6 +67,7 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    auth: state.auth
   };
 };
 

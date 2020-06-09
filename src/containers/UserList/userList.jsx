@@ -45,11 +45,11 @@ class UserList extends Component {
       default:
     }
   }
-
+  
   render () {
 
     const { movies } = this.state;
-    const { userList, addToUserList, removeToUserList, user} = this.props;
+    const { userList, addToUserList, removeToUserList, user, auth} = this.props;
 
     return (
       <div className="content">
@@ -62,6 +62,7 @@ class UserList extends Component {
           addToUserList={addToUserList}
           removeToUserList={removeToUserList}
           user={user}
+          auth={auth}
          />
         }
       </div>
@@ -72,10 +73,11 @@ class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    hasErrored: state.error,
-    isLoading: state.loading,
+    error: state.error,
+    loading: state.loading,
     userList: state.userList,
-    user: state.user
+    user: state.user,
+    auth: state.auth
   };
 };
 
