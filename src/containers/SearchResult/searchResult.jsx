@@ -3,21 +3,28 @@ import List from '../../components/MovieList/movieList';
 import { API_KEY, PATH_BASE, PATH_MOVIE, PATH_SEARCH, DEFAULT_PAGE, PATH_PAGE } from '../../api';
 
 import { connect } from 'react-redux';
-import { itemsFetchData, addToUserList, removeToUserList} from '../../actions/moviesAction';
+import { itemsFetchData, searchText } from '../../actions/moviesAction';
 
 class SearchResults extends Component {
 
   componentDidMount() {
-    const {fetchData} = this.props;
-    const TERM = location.search.split('=');
-
-    fetchData(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}?api_key=${API_KEY}&query=${TERM[1]}&${PATH_PAGE}&language=ru`);
+    const {fetchData, searchText} = this.props;
+    fetchData(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}?api_key=${API_KEY}&query=${searchText}&${PATH_PAGE}&language=ru`);
   }
 
+  componentDidUpdate(prevProps) {
+
+    const {fetchData} = this.props
+
+    if (this.props.searchText !== prevProps.searchText) {
+      fetchData(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}?api_key=${API_KEY}&query=${this.props.searchText}&${PATH_PAGE}&language=ru`);
+    }
+
+  }
 
   render () {
-    const { movies , userList, addToUserList, removeToUserList, user} = this.props;
-    const { results, page } = movies;
+    const { movies , userList, addToUserList, removeToUserList, user } = this.props;
+    const { results, } = movies;
 
     return (
       <div className="content">
@@ -46,7 +53,8 @@ const mapStateToProps = (state) => {
     error: state.error,
     loading: state.loading,
     userList: state.userList,
-    user: state.user
+    user: state.user,
+    searchText: state.searchText
   };
 };
 

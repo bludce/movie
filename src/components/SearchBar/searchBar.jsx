@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter , Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { searchText } from '../../actions/moviesAction';
 
 import './searchBar.sass';
 import imgSeacrh from '../../assets/img/search.svg'
@@ -22,7 +24,8 @@ class SearchBar extends Component {
   handleSearchSubmit = ({key}) => {
     const { searchText } = this.state;
 
-    if (searchText.length > 3 && key === 'Enter') {
+    if (key === 'Enter') {
+      this.props.searchText(searchText)
       this.props.history.push({
         pathname: `/search`,
         search: `?query=${searchText}`
@@ -41,4 +44,16 @@ class SearchBar extends Component {
   }
 }
 
-export default withRouter(SearchBar);
+const mapStateToProps = (state) => {
+  return {
+    searchText: state.searchText,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchText: (text) => dispatch(searchText(text)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBar));

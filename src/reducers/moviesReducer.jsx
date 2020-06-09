@@ -49,3 +49,12 @@ export const userList = (state = initialUserListState, {type, id, list, moviesLi
       return state;
   }
 }
+
+export const searchText = (state = '', {type, searchText}) => {
+  switch (type) {
+    case 'SEARCH_TEXT': 
+      return searchText
+    default:
+      return state;
+  }
+}

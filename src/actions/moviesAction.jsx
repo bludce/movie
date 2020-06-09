@@ -99,6 +99,11 @@ export function removeMovie() {
   };
 }
 
+export const searchText = (searchText) => ({
+  type: 'SEARCH_TEXT',
+  searchText
+});
+
 export const addUserList = (id, list) => ({
   type: 'ADD_TO_USER_LIST',
   id, list

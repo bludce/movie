@@ -17,7 +17,7 @@ import Login from './containers/Login/login'
 import Logout from './containers/Logout/logout'
 import Loading from './components/Loading/loading'
 import UserList from './containers/UserList/userList'
-import SearcResult from './containers/SearchResult/serachResult'
+import SearcResult from './containers/SearchResult/searchResult'
 
 class App extends Component {
 

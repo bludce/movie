@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { movies, userList, movie } from './moviesReducer';
+import { movies, userList, movie, searchText } from './moviesReducer';
 import { user } from './userReducer';
 
 function error(state = false, action) {
@@ -29,5 +29,6 @@ export default combineReducers({
     loading,
     userList,
     movie,
+    searchText,
     user
 });
