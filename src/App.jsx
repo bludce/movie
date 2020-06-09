@@ -17,6 +17,7 @@ import Login from './containers/Login/login'
 import Logout from './containers/Logout/logout'
 import Loading from './components/Loading/loading'
 import UserList from './containers/UserList/userList'
+import SearcResult from './containers/SearchResult/serachResult'
 
 class App extends Component {
 
@@ -63,7 +64,9 @@ class App extends Component {
                      />
                   )}
                 />
-              <Route path="/search" />
+              <Route path="/search" render={
+                ()=><SearcResult title="Поиск" />
+              }/>
               <Route exact path="/favorites" render={
                 ()=><UserList title="Любимые" list="favorites"/>
               }/>

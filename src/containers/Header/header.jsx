@@ -5,7 +5,7 @@ import './header.sass';
 
 // import components
 import Logo from '../../components/Logo/logo'
-import SearchBar from '../SearchBar/searchBar'
+import SearchBar from '../../components/SearchBar/searchBar'
 import LoginTickets from '../../components/Login-tickets/login-tickets'
 import UserMenu from '../../components/UserMenu/userMenu'
 

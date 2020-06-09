@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { API_KEY, PATH_BASE, PATH_MOVIE } from '../../api';
 import List from '../../components/MovieList/movieList';
 
+import { addToUserList, removeToUserList} from '../../actions/moviesAction';
+
+
 import './userList.sass';
 
 class UserList extends Component {
@@ -69,8 +72,8 @@ class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    hasErrored: state.MoviesHasErrored,
-    isLoading: state.MoviesIsLoading,
+    hasErrored: state.error,
+    isLoading: state.loading,
     userList: state.userList,
     user: state.user
   };

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { API_KEY, PATH_BASE, PATH_MOVIE, DEFAULT_PAGE, PATH_PAGE, PATH_POPULAR } from '../../api';
 import List from '../../components/MovieList/movieList';
+import { API_KEY, PATH_BASE, PATH_MOVIE, PATH_SEARCH, DEFAULT_PAGE, PATH_PAGE } from '../../api';
+
 import { connect } from 'react-redux';
 import { itemsFetchData, addToUserList, removeToUserList} from '../../actions/moviesAction';
 
-import './main.sass'
-
-class Main extends Component {
+class SearchResults extends Component {
 
   componentDidMount() {
-    const {fetchData, section} = this.props;
-    fetchData(`${PATH_BASE}${PATH_MOVIE}${section}?api_key=${API_KEY}&${PATH_PAGE}&language=ru`);
+    const {fetchData} = this.props;
+    const TERM = location.search.split('=');
+
+    fetchData(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}?api_key=${API_KEY}&query=${TERM[1]}&${PATH_PAGE}&language=ru`);
   }
 
-  render () {
 
+  render () {
     const { movies , userList, addToUserList, removeToUserList, user} = this.props;
     const { results, page } = movies;
 
@@ -36,6 +37,7 @@ class Main extends Component {
     );
 
   }
+
 }
 
 const mapStateToProps = (state) => {
@@ -56,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
